@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule } from '@angular/forms';
+
 import { HeroesComponent } from './heroes.component';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -8,7 +11,8 @@ describe('HeroesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeroesComponent ]
+      imports: [ FormsModule ],
+      declarations: [ HeroesComponent, HeroDetailComponent ]
     })
     .compileComponents();
   }));
@@ -21,5 +25,10 @@ describe('HeroesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should list the mock heroes', () => {
+    const items = fixture.nativeElement.querySelectorAll('li');
+    expect(items.length).toBe(10);
   });
 });
